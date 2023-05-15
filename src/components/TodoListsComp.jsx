@@ -33,7 +33,7 @@ export default function TodoListsComp() {
           <button
             className="px-2 py-1 bg-red-600 text-white rounded-md"
             onClick={ () => {
-                removeTodo(index);
+                removeTodo(index)
               }
             }
           >Remove</button>
@@ -42,7 +42,7 @@ export default function TodoListsComp() {
     )
   })
   return (
-    <div className="mt-2"> {/*container*/}
+    <div className="py-2 mt-2"> {/*container*/}
       <div> {/* each element */}
         {todoLists}
       </div>

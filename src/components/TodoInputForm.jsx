@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, {useState, useContext} from 'react'
 import context from '../context/context'
 
 export default function TodoInputForm() {
@@ -19,10 +19,10 @@ export default function TodoInputForm() {
 
     let updatedTodos = [...todos];
     updatedTodos.push({
-      'id': todos.length+1,
+      'id': todos.length === 0 ? 1 : todos[todos.length-1].id+1,
       'title': inputValue
     })
-
+    
     setTodos(updatedTodos)
     
     setInputValue('');
