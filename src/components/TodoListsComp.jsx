@@ -1,11 +1,11 @@
-import React,{ useContext } from 'react';
+import React,{ useContext, useRef } from 'react';
 import context from '../context/context'
-
+     
 export default function TodoListsComp() {
 
   let {todos, setTodos} = useContext(context)
 
-  const editClickedTodo = (e) => {
+  const todoClickedForEdit = (e) => {
     e.target.contentEditable = true;
     e.target.focus();
   }
@@ -20,12 +20,12 @@ export default function TodoListsComp() {
   let todoLists = todos.map((item, index) => {
     return (
       <li
-        className="mt-2 flex justify-between items-center"
+        className="mt-2 flex justify-between items-center border border-black"
         key={item.id}
       >
         <div
-          className="w-full"
-          onClick={editClickedTodo}
+          className="w-full border border-black"
+          onClick={todoClickedForEdit}
         >
           {item.title}
         </div>
@@ -41,6 +41,7 @@ export default function TodoListsComp() {
       </li>
     )
   })
+
   return (
     <div className="py-2 mt-2"> {/*container*/}
       <div> {/* each element */}
