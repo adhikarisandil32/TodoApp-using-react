@@ -1,4 +1,4 @@
-import React,{ useContext, useRef } from 'react';
+import React,{ useContext } from 'react';
 import context from '../context/context'
      
 export default function TodoListsComp() {
@@ -8,6 +8,24 @@ export default function TodoListsComp() {
   const todoClickedForEdit = (e) => {
     e.target.contentEditable = true;
     e.target.focus();
+  }
+
+  const whenOutOfFocus = (e, idx) => {
+    e.target.contentEditable = false;
+    let updatedTodos = todos.map(each => {
+      return each
+    })
+
+    updatedTodos[idx].title = e.target.innerText === '' ? updatedTodos[idx].title : e.target.innerText
+
+    setTodos(updatedTodos)
+  }
+
+  const editingTitle = (e, idx) => {
+    if(e.key === 'Enter') {
+      e.preventDefault()
+      whenOutOfFocus(e, idx) // idx use गरेको कुन indexमा title update गर्ने भनेर whenOutOfFocus लाई info पठाउन 
+    }
   }
 
   const removeTodo = (idxRemoveFrom) => {
@@ -20,12 +38,18 @@ export default function TodoListsComp() {
   let todoLists = todos.map((item, index) => {
     return (
       <li
-        className="mt-2 flex justify-between items-center border border-black"
+        className="mt-2 flex justify-between items-center"
         key={item.id}
       >
         <div
-          className="w-full border border-black"
+          className="w-full"
           onClick={todoClickedForEdit}
+          onBlur={(event) => {
+            whenOutOfFocus(event, index)
+          }}
+          onKeyDown={(event) => {
+            editingTitle(event, index)
+          }}
         >
           {item.title}
         </div>
