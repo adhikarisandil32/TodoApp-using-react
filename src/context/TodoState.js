@@ -4,7 +4,8 @@ import context from './context'
 export default function TodoState(props){
 
     //because listOfTodos has a string, we must make sure the string is not empty or else JSON.parse throws an error
-    let listOfTodos = (localStorage.listOfTodos) ? [] : JSON.parse(localStorage.getItem('listOfTodos'));
+    console.log(localStorage.listOfTodos)
+    let listOfTodos = (localStorage.listOfTodos) ? JSON.parse(localStorage.getItem('listOfTodos')): [];
 
     let [todos, setTodos] = useState(listOfTodos);
 
