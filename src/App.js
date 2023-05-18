@@ -6,14 +6,16 @@ import TodoState from './context/TodoState'
 
 function App() {
   return (
-    <div
-      className="px-2 w-[min(100%,500px)] mx-auto bg-slate-300"
-    >
-      <TodoState>
-        <Heading />
-        <TodoInputForm />
-        <TodoListsComp />
-      </TodoState>
+    <div className='min-h-screen bg-gradient-to-b from-[#B0E0E6] to-[#F4A460]'>
+      <div
+        className="px-2 w-[min(100%,500px)] mx-auto"
+      >
+        <TodoState>
+          <Heading />
+          <TodoInputForm />
+          <TodoListsComp />
+        </TodoState>
+      </div>
     </div>
   );
 }
